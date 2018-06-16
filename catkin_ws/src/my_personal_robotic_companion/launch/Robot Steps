@@ -1,0 +1,62 @@
+roscore
+
+ rosrun rosserial_python serial_node.py /dev/ttyACM3
+
+ rostopic echo /cmd_vel 
+ rostopic echo /rpm
+rostopic echo /tinyImu 
+ roslaunch my_personal_robotic_companion laser_scan.launch
+ roslaunch my_personal_robotic_companion slam.launch
+ roslaunch my_personal_robotic_companion move_base.launch
+
+
+cd catkin_ws/src
+
+git clone https://github.com/rohbotics/xv_11_laser_driver.git
+
+cd ..
+
+catkin_make
+
+source devel/setup.bash
+
+roscore
+
+in new terminal:
+
+source devel/setup.bash
+
+rosrun xv_11_laser_driver neato_laser_publisher _port:=/dev/ttyUSB0
+
+in new terminal:
+
+rosrun rviz rviz
+
+rostopic echo /joy_teleop/cmd_vel
+
+1. First clone my github repo using the command: $ git clone https://github.com/sungjik/my_personal_robotic_companion.git
+
+2. Install ros packages for navigation, freenect, and gmapping.
+
+3. If you aren’t using Adafruit’s motor shield v2 as your dc motor driver, you will need to make the appropriate changes to the motor_controller.ino file.
+For example, adafruit’s motor shield library sets the motor speed and direction with the setSpeed and run methods, which you will need to fix to work with the motor driver you are using.
+
+4. Change the wheel diameter, track width, etc. in robot_specs.h
+
+
+5. edit in robot_config.launch the static_transform_publisher args.
+
+You will need to change the static tf args such as -0.17 to fit your robot specifications. You can follow the directions in http://www.hessmer.org/blog/2012/02/11/ardros-transform-between-base_link-and-the-kinect-sensor/
+
+
+6. If you aren’t using an android phone as an imu like I did, comment out the imu_node lines in robot_config.launch
+
+7. If you haven’t created a urdf model for your robot, comment out the urdf include lines in driver.launch, slam.launch, move_base.launch, and laser_scan.launch
+
+8. Compile everything and source your packages as described here : http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment
+
+9. Try driving around the robot : $ roslaunch my_personal_robotic_companion driver.launch
+
+10. For trying the laser scanner, SLAM gmapping, and navigation, roslaunch laser_scan.launch, slam.launch, and move_base.launch respectively.
+
+11. You will need to play around with the parameter settings in the launch files, such as the linear and angular scale constants in robot_config.launch, the params in amcl_diff.launch, the yaml files, etc. All the information you need are in the ros navigation tutorials and the gmapping wiki page to get everything properly set up and working.

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<launch>
+<node name="imu_node" pkg="my_personal_robotic_companion" type="gyro.py" output="screen">
+    <param name="host" value="192.168.8.104" />
+    <param name="num_callibration_itrs" value="0" />
+    <param name="debug" value="false" />
+  </node>
+</launch>

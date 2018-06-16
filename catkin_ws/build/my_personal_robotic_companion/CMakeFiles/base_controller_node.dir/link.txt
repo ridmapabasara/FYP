@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/base_controller_node.dir/src/base_controller.cpp.o  -o /home/ubuntu/catkin_ws/devel/lib/my_personal_robotic_companion/base_controller_node -rdynamic 

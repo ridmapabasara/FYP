@@ -1,0 +1,2 @@
+beginner_tutorials:depthimage_to_laserscan:learning_tf:my_personal_robotic_companion:mybot_navigation:robot_model/collada_parser:robot_model/collada_urdf:robot_model/joint_state_publisher:robot_model/kdl_parser:robot_model/robot_model:robot_model/urdf:robot_model/urdf_parser_plugin:tiny_msgs:xv_11_laser_driver
+-DCATKIN_DEVEL_PREFIX=/home/ubuntu/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ubuntu/catkin_ws/install -G Unix Makefiles

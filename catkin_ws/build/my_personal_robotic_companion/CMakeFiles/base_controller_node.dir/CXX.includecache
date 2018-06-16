@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ubuntu/catkin_ws/src/my_personal_robotic_companion/src/base_controller.cpp
+ros/ros.h
+-
+tf/transform_broadcaster.h
+-
+nav_msgs/Odometry.h
+-
+geometry_msgs/Vector3.h
+-
+stdio.h
+-
+cmath
+-
+algorithm
+-
+robot_specs.h
+-
+
+/home/ubuntu/catkin_ws/src/my_personal_robotic_companion/src/robot_specs.h
+
