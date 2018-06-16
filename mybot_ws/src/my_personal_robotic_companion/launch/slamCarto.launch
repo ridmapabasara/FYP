@@ -1,0 +1,15 @@
+<launch>
+
+
+  <node name="cartographer_node" pkg="cartographer_ros"
+      type="cartographer_node" args="
+          -configuration_directory $(find cartographer_ros)/configuration_files
+          -configuration_basename backpack_2d.lua"
+      output="screen">
+     <!--<remap from="echoes" to="scan" />-->
+  </node>
+
+    <node name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen" launch-prefix="xterm -e"/>
+
+    <node pkg="rviz" name="rviz" type="rviz" args="-d $(find my_personal_robotic_companion)/launch/rviz/slam.rviz"/>
+</launch>

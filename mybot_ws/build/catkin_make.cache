@@ -1,0 +1,2 @@
+my_personal_robotic_companion:mybot_control:mybot_description:mybot_gazebo:mybot_navigation:simple_navigation_goals
+-DCATKIN_DEVEL_PREFIX=/home/ridma/mybot_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ridma/mybot_ws/install -G Unix Makefiles

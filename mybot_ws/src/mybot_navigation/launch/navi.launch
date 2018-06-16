@@ -1,0 +1,8 @@
+<launch>
+
+<include file="$(find mybot_description)/launch/mybot_rviz_amcl.launch" />
+<include file="$(find mybot_gazebo)/launch/mybot_world.launch" />
+ <include file="$(find mybot_navigation)/launch/amcl_demo.launch" />
+ 
+  <node name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen" launch-prefix="xterm -e"/>
+</launch>

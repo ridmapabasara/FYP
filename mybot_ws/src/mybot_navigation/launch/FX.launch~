@@ -1,0 +1,55 @@
+<launch>
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find mybot_description)/urdf/mybot.xacro'"/>
+
+  <!-- send fake joint values -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="False"/>
+  </node>
+
+  <!-- Combine joint values -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+
+ 
+     <node pkg="rviz" name="rviz" type="rviz" args="-d $(find mybot_navigation)/launch/rviz/frontier_rviz.rviz"/>
+
+
+  <!-- Set cmd_vel mux to listen to cmd_vel instead of teleop -->
+  <!--node name="mux_select" pkg="topic_tools" type="mux_select" args="mux cmd_vel"/-->
+
+
+
+ <include file="$(find mybot_gazebo)/launch/mybot_world.launch" />
+ <include file="$(find mybot_navigation)/launch/gmapping_demo.launch" />
+ 
+
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find mybot_navigation)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find mybot_navigation)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find mybot_navigation)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find mybot_navigation)/param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find mybot_navigation)/param/base_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find mybot_navigation)/param/move_base_params.yaml" command="load" />
+    <rosparam file="$(find mybot_navigation)/param/global_planner_params.yaml" command="load" />
+    <rosparam file="$(find mybot_navigation)/param/navfn_global_planner_params.yaml" command="load" />
+  </node>
+
+
+ <!-- Start frontier_exploration -->
+
+<node pkg="frontier_exploration" type="explore_client" 
+        name="explore_client" output="screen"/>
+ <node pkg="frontier_exploration" type="explore_server" name="explore_server" 
+        output="screen" >
+        <param name="frequency" type="double" value="1.0"/>
+        <param name="goal_aliasing" type="double" value="0.5"/>
+        <rosparam ns="explore_costmap" subst_value="true" 
+        file="$(find mybot_navigation)/param/exploration.yaml" command="load" />
+    </node>
+    
+
+    <node name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen" launch-prefix="xterm -e"/>
+
+
+
+
+</launch>

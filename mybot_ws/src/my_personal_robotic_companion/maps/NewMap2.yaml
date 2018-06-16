@@ -1,0 +1,7 @@
+image: /home/ridma/catkin_ws/src/my_personal_robotic_companion/maps/NewMap2.pgm
+resolution: 0.050000
+origin: [-5.000000, -5.000000, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

@@ -1,0 +1,8 @@
+prefix=/home/ridma/mybot_ws/devel
+
+Name: my_personal_robotic_companion
+Description: Description of my_personal_robotic_companion
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/ridma/mybot_ws/devel/lib 
+Requires: 

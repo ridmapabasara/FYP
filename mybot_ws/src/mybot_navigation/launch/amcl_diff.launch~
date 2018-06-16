@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+	<node pkg="amcl" type="amcl" name="amcl" output="screen">
+		   <param name="odom_frame_id" value="odom"/>
+    <param name="odom_model_type" value="diff-corrected"/>
+    <param name="base_frame_id" value="/chassis"/>
+    <param name="update_min_d" value="0.5"/>
+    <param name="update_min_a" value="1.0"/>
+
+
+
+
+
+
+
+</node>
+</launch>
